@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For Yuvaaan 💕</title>
+
+<style>
+body {
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive;
+    background: linear-gradient(to bottom right, #ffd6e8, #ffe6f5);
+    margin: 0;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    animation: fade 1s ease-in-out;
+    margin-top: 150px;
+}
+
+.active {
+    display: block;
+}
+
+@keyframes fade {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 20px;
+    transition: 0.3s;
+}
+
+#yes {
+    background-color: #ff4da6;
+    color: white;
+}
+
+#no {
+    background-color: #ccc;
+    position: absolute;
+}
+
+.bounce {
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+    from {transform: scale(1);}
+    to {transform: scale(1.1);}
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    color: pink;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    from {transform: translateY(100vh);}
+    to {transform: translateY(-10vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Slide 1 -->
+<div class="slide active" id="slide1">
+    <h1>Hi Yuvaaan 💕</h1>
+    <button onclick="nextSlide(1)">Next ➡️</button>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide" id="slide2">
+    <h1>I love you to the moon and back 🌙✨</h1>
+    <button onclick="nextSlide(2)">Next ➡️</button>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide" id="slide3">
+    <h1 class="bounce">I’m better than you 😌</h1>
+    <h2>And I love you more 💘</h2>
+    <button onclick="nextSlide(3)">Next ➡️</button>
+</div>
+
+<!-- Slide 4 -->
+<div class="slide" id="slide4">
+    <h1>Will you be my Valentine? 💞</h1>
+    <button id="yes" onclick="sayYes()">Yes 💖</button>
+    <button id="no" onmouseover="moveNo()">No 😭</button>
+</div>
+
+<script>
+let size = 18;
+
+function nextSlide(current) {
+    document.getElementById("slide" + current).classList.remove("active");
+    document.getElementById("slide" + (current + 1)).classList.add("active");
+}
+
+function sayYes() {
+    document.body.innerHTML = "<h1 style='margin-top:200px;'>I KNEW ITTTT 😭💘✨</h1><h2>You’re stuck with me now 😌</h2>";
+}
+
+function moveNo() {
+    let noBtn = document.getElementById("no");
+    let yesBtn = document.getElementById("yes");
+
+    let x = Math.random() * (window.innerWidth - 100);
+    let y = Math.random() * (window.innerHeight - 100);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    size += 5;
+    yesBtn.style.fontSize = size + "px";
+}
+
+/* Create floating hearts */
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}, 500);
+</script>
+
+</body>
+</html>
